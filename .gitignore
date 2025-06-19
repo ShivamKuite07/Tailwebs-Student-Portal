@@ -52,3 +52,6 @@ dist/
 
 # Mac/Unix hidden files
 *.swp
+
+# gitignore
+.gitignore
