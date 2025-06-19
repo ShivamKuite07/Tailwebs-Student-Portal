@@ -1,10 +1,12 @@
 # 🎓 Tailwebs Student Portal - Shivam Kuite 🤖
 
-<image src="tailwebs-demo.png" />
+<image src="flask_student_portal/tailwebs-demo.png" />
 
 A simple and modern web app for teachers to manage student subject-wise marks, built using Flask, 
 Bootstrap, and SQLite. This app allows teacher login, adding students, editing marks, 
 and viewing subject-wise reports per student.
+
+## Note: Watch demo.
 
 ## 🚀 Features
 
@@ -72,6 +74,7 @@ cd Tailwebs-Student-Portal/
 
 ```bash
 python -m venv venv
+
 venv\Scripts\activate
 ```
 

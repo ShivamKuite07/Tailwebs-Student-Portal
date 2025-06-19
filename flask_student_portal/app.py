@@ -26,7 +26,7 @@ def load_user(user_id):
 app.register_blueprint(auth)
 app.register_blueprint(student)
 
-# ✅ Instead of @before_first_request
+
 with app.app_context():
    db.create_all()
 
