@@ -65,7 +65,7 @@ myproject/
 ```bash
 git clone https://github.com/ShivamKuite07/Tailwebs-Student-Portal.git
 cd Tailwebs-Student-Portal/
-bash
+```
 
 
 ### 2️⃣ Create virtual environment
@@ -84,9 +84,10 @@ pip install -r requirements.txt
 
 ### 4️⃣ Run the app
 
-
+```bash
 cd flask_student_portal
 python app.py
+```
 
 
 
