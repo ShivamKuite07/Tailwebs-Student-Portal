@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h3 class="mb-0">📊 Tailwebs Student Dashboard Demo</h3>
+  <a href="{{ url_for('student.add_student') }}" class="btn btn-success">+ Add Student</a>
+</div>
+
+<form method="get" class="row g-3 mb-4">
+  <div class="col-md-3">
+    <input type="text" class="form-control" name="roll" placeholder="Roll No" value="{{ request.args.get('roll', '') }}">
+  </div>
+  <div class="col-md-3">
+    <input type="text" class="form-control" name="name" placeholder="Name" value="{{ request.args.get('name', '') }}">
+  </div>
+  <div class="col-md-3">
+    <input type="text" class="form-control" name="subject" placeholder="Subject" value="{{ request.args.get('subject', '') }}">
+  </div>
+  <div class="col-md-3 d-flex gap-2">
+    <button type="submit" class="btn btn-primary w-100">Filter</button>
+    <a href="{{ url_for('student.dashboard') }}" class="btn btn-secondary w-100">Reset</a>
+  </div>
+</form>
+
+<div class="table-responsive shadow-sm rounded">
+  <table class="table table-bordered table-hover align-middle">
+    <thead class="table-primary">
+      <tr>
+        <th>Roll No</th>
+        <th>Name</th>
+        <th>Subject</th>
+        <th>Marks</th>
+        <th class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in students %}
+      <tr>
+        <td>{{ s.roll }}</td>
+        <td>{{ s.name }}</td>
+        <td>{{ s.subject }}</td>
+        <td>{{ s.marks }}</td>
+        <td class="text-center">
+          <div class="btn-group" role="group">
+            <a href="{{ url_for('student.edit_student', id=s.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+            <a href="{{ url_for('student.student_detail', roll=s.roll) }}" class="btn btn-sm btn-outline-secondary">Details</a>
+            <form action="{{ url_for('student.delete_subject', id=s.id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Delete this subject record?');">
+              <button type="submit" class="btn btn-sm btn-outline-danger">🗑</button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% if pagination.pages > 1 %}
+<nav aria-label="Page navigation" class="mt-4">
+  <ul class="pagination justify-content-center">
+    {% if pagination.has_prev %}
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('student.dashboard', page=pagination.prev_num, roll=filters.roll, name=filters.name, subject=filters.subject) }}">Prev</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled"><span class="page-link">Prev</span></li>
+    {% endif %}
+
+    {% for p in pagination.iter_pages(left_edge=2, right_edge=2, left_current=2, right_current=2) %}
+      {% if p %}
+        {% if p == pagination.page %}
+          <li class="page-item active"><span class="page-link">{{ p }}</span></li>
+        {% else %}
+          <li class="page-item">
+            <a class="page-link" href="{{ url_for('student.dashboard', page=p, roll=filters.roll, name=filters.name, subject=filters.subject) }}">{{ p }}</a>
+          </li>
+        {% endif %}
+      {% else %}
+        <li class="page-item disabled"><span class="page-link">…</span></li>
+      {% endif %}
+    {% endfor %}
+
+    {% if pagination.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('student.dashboard', page=pagination.next_num, roll=filters.roll, name=filters.name, subject=filters.subject) }}">Next</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled"><span class="page-link">Next</span></li>
+    {% endif %}
+  </ul>
+</nav>
+{% endif %}
+
+{% endblock %}
