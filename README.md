@@ -63,7 +63,7 @@ myproject/
 ### 1️⃣ Clone the repository
 
 
-git clone https://github.com/your-username/flask-student-portal.git
+git clone https://github.com/ShivamKuite07/Tailwebs-Student-Portal.git
 cd flask-student-portal
 
 
