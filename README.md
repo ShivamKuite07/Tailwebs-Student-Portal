@@ -62,18 +62,18 @@ myproject/
 
 ### 1️⃣ Clone the repository
 
-
+```bash
 git clone https://github.com/ShivamKuite07/Tailwebs-Student-Portal.git
-cd flask-student-portal
+cd Tailwebs-Student-Portal/
+bash
 
 
 ### 2️⃣ Create virtual environment
 
 ```bash
 python -m venv venv
-venv\Scripts\activate #source venv/bin/activate # on macOS/Linux
+venv\Scripts\activate
 ```
-
 
 ### 3️⃣ Install dependencies
 
