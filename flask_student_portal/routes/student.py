@@ -80,9 +80,10 @@ def add_student():
     if form.validate_on_submit():
         existing = StudentMark.query.filter_by(roll=form.roll.data, subject=form.subject.data).first()
         if existing:
+            flash('Student with this subject already exists. Updating marks.', 'info')
             existing.name = form.name.data
             existing.gender = form.gender.data
-            existing.marks = form.marks.data
+            existing.marks += form.marks.data
             db.session.commit()
             flash("Student record updated.", "info")
         else:
